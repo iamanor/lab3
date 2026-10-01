@@ -70,12 +70,12 @@ function style(feature){
 
 function highlightFeature(e) {
     // Get access to the feature that was hovered through e.target
-    var feature = e.target;
+    var layer = e.target;
 
     // Set a thick grey border on the feature as mouseover effect
     // Adjust the values below to change the highlighting styles of features on mouseover
     // Check out https://leafletjs.com/reference.html#path for more options for changing style
-    feature.setStyle({
+    layer.setStyle({
         weight: 5,
         color: '#666',
         dashArray: '',
@@ -99,7 +99,7 @@ function onEachFeature(feature, layer) {
 }
 
 var geojson = L.geoJson(data, {
-    style:style,
+    style: style,
     onEachFeature: onEachFeature
 }).bindPopup(function (layer){
     return layer.feature.properties.NAME 
