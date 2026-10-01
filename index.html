@@ -49,6 +49,25 @@ function style(feature){
     };
 }
 
+function highlightFeature(e) {
+    // Get access to the feature that was hovered through e.target
+    var feature = e.target;
+
+    // Set a thick grey border on the feature as mouseover effect
+    // Adjust the values below to change the highlighting styles of features on mouseover
+    // Check out https://leafletjs.com/reference.html#path for more options for changing style
+    feature.setStyle({
+        weight: 5,
+        color: '#666',
+        fillOpacity: 0.7
+    });
+
+    // Bring the highlighted feature to front so that the border doesn’t clash with nearby states
+    // But not for IE, Opera or Edge, since they have problems doing bringToFront on mouseover
+    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+        feature.bringToFront();
+    }
+}
 L.geoJson(data, {
    style:style
 }).addTo(map);
