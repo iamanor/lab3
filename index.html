@@ -13,6 +13,7 @@
 
     </head>
 
+<script type="text/javascript" src="data.js"></script>
     <body>
         <div id="map" style="height: 500px"></div>
 
@@ -29,6 +30,7 @@
            minZoom: 5
          }).addTo(map);
 
+L.geoJson(data).addTo(map);
         </script>
    </body>
 </html>
