@@ -101,8 +101,11 @@ function onEachFeature(feature, layer) {
 }
 
 geojson = L.geoJson(data, {
-    style: style,
+    style:style,
     onEachFeature: onEachFeature
+}).bindPopup(function (layer){
+    return layer.feature.properties.NAME 
+           + '<p style="color:purple">' + layer.feature.properties.pop_den.toString() + ' people/hectare </p>';       
 }).addTo(map);
         </script>
         
