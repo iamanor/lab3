@@ -37,6 +37,16 @@ function getColor(value) {
            value > 1847  ? '#b2e2e2':
                          '#edf8fb';
 }
+            
+function style(feature){
+    return {
+        fillColor: getColor(feature.properties.PopDen),   // pop_den is the field name for the population density data
+        weight: 2,
+        opacity: 1,
+        color: 'red',
+        fillOpacity: 0.9
+    };
+}
 L.geoJson(data).addTo(map);
         </script>
    </body>
