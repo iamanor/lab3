@@ -62,14 +62,28 @@ function highlightFeature(e) {
         fillOpacity: 0.7
     });
 
+var geojson; // define a variable to make the geojson layer accessible for the funtion to use   
+            
+function resetHighlight(e) {
+    geojson.resetStyle(e.target);
+}
     // Bring the highlighted feature to front so that the border doesn’t clash with nearby states
     // But not for IE, Opera or Edge, since they have problems doing bringToFront on mouseover
     if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
         feature.bringToFront();
     }
 }
-L.geoJson(data, {
-   style:style
+            
+function onEachFeature(feature, layer) {
+    layer.on({
+        mouseover: highlightFeature, // Do what defined by the highlightFeature function on mouseover
+        mouseout: resetHighlight,    // Do what defined by the resetHighlight function on mouseout
+    });
+}
+
+geojson = L.geoJson(data, {
+    style: style,
+    onEachFeature: onEachFeature
 }).addTo(map);
         </script>
    </body>
