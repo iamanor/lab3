@@ -77,22 +77,20 @@ function highlightFeature(e) {
     // Check out https://leafletjs.com/reference.html#path for more options for changing style
     feature.setStyle({
         weight: 5,
-        color: '#edf8fb',
+        color: '#666',
+        dashArray: '',
         fillOpacity: 0.7
     });
-
-var geojson; // define a variable to make the geojson layer accessible for the funtion to use   
-            
-function resetHighlight(e) {
-    geojson.resetStyle(e.target);
-}
+  
     // Bring the highlighted feature to front so that the border doesn’t clash with nearby states
     // But not for IE, Opera or Edge, since they have problems doing bringToFront on mouseover
     if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
         feature.bringToFront();
     }
 }
-            
+ function resetHighlight(e) {
+     geojson.resetStyle(e.target);
+ }
 function onEachFeature(feature, layer) {
     layer.on({
         mouseover: highlightFeature, // Do what defined by the highlightFeature function on mouseover
@@ -100,7 +98,7 @@ function onEachFeature(feature, layer) {
     });
 }
 
-geojson = L.geoJson(data, {
+var geojson = L.geoJson(data, {
     style:style,
     onEachFeature: onEachFeature
 }).bindPopup(function (layer){
