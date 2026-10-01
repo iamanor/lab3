@@ -107,8 +107,6 @@ geojson = L.geoJson(data, {
     return layer.feature.properties.NAME 
            + '<p style="color:purple">' + layer.feature.properties.PopDen.toString() + ' people/hectare </p>';       
 }).addTo(map);
-        </script>
-        
 var legend = L.control({position: 'bottomright'}); // Try the other three corners if you like.
 
 legend.onAdd = function (map) {
@@ -130,5 +128,6 @@ legend.onAdd = function (map) {
 };
 
 legend.addTo(map);
+        </script>
    </body>
 </html>
