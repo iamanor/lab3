@@ -48,7 +48,10 @@ function style(feature){
         fillOpacity: 0.9
     };
 }
-L.geoJson(data).addTo(map);
+
+L.geoJson(data, {
+   style:style
+}).addTo(map);
         </script>
    </body>
 </html>
